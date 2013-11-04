@@ -10,8 +10,8 @@ Plateforme de prise de rendez-vous.
 
 # Note
 
-Les commit du code se feront dans la branche 'developpement'
-Les coorections suite aux test(unitaires, fonctionnels) seront commité dans la brache 'correctif'
+Les commits du code se feront dans la branche 'developpement'.
+Les corrections suite aux test(unitaires, fonctionnels) seront commitées dans la brache 'correctif'
 
 Merge dans 'Master' si tout est OK.
 
