@@ -1,5 +1,4 @@
 /*
- * $Id: ExampleSupport.java 739661 2009-02-01 00:06:00Z davenewton $
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
