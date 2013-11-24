@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="prv" namespace="/prv" extends="struts-default">
+
+        <default-action-ref name="rv" />
+
+        <action name="rv" class="com.dev.uva.prv.rv.RvAction">
+            <result name="afficher">/prv/rv.jsp</result>
+        </action>
+
+        <action name="connexion_*" method="{1}" class="com.dev.uva.prv.accueil.Connexion">
+            <result name="input">/prv/connexion.jsp</result>
+            <result type="redirectAction">rv</result>
+        </action>
+
+        <action name="*" class="com.dev.uva.prv.commun.PrvBaseAction">
+            <result>/prv/{1}.jsp</result>
+        </action>
+
+		<!-- définir ici les actions ... -->
+
+    </package>
+</struts>
