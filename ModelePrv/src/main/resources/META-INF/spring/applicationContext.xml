@@ -43,7 +43,7 @@
         The most commonly used annotation is @Autowired, which instructs Spring to
         dependency inject an object into your class.
     -->
-    <context:component-scan base-package="com.dev.uva.prv">
+    <context:component-scan base-package="com.dev.uva.prv.modele">
         <context:exclude-filter expression=".*_Roo_.*" type="regex"/>
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
@@ -69,11 +69,11 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
     
-    <bean id="clientADImpl"  class="com.dev.uva.prv.dao.ClientADImpl"/>
-    <bean id="creneauxADImpl"  class="com.dev.uva.prv.dao.CreneauxADImpl"/>
-    <bean id="employeADImpl"  class="com.dev.uva.prv.dao.EmployeADImpl"/>
-    <bean id="rendezvousADImpl"  class="com.dev.uva.prv.dao.RendezvousADImpl"/>
-    <bean id="roleADImpl"  class="com.dev.uva.prv.dao.RoleADImpl"/>
+    <bean id="clientADImpl"  class="com.dev.uva.prv.modele.dao.ClientADImpl"/>
+    <bean id="creneauxADImpl"  class="com.dev.uva.prv.modele.dao.CreneauxADImpl"/>
+    <bean id="employeADImpl"  class="com.dev.uva.prv.modele.dao.EmployeADImpl"/>
+    <bean id="rendezvousADImpl"  class="com.dev.uva.prv.modele.dao.RendezvousADImpl"/>
+    <bean id="roleADImpl"  class="com.dev.uva.prv.modele.dao.RoleADImpl"/>
     
-    <bean id="serviceRv" class="com.dev.uva.prv.service.ServiceRvImpl" />
+    <bean id="serviceRv" class="com.dev.uva.prv.modele.service.ServiceRvImpl" />
 </beans>

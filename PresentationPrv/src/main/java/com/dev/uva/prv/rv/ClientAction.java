@@ -8,7 +8,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.dev.uva.prv.commun.PrvBaseAction;
-import com.dev.uva.prv.entite.Client;
+import com.dev.uva.prv.modele.entite.Client;
 import com.opensymphony.xwork2.ModelDriven;
 
 

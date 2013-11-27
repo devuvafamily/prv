@@ -1,6 +1,6 @@
-package com.dev.uva.prv.service;
+package com.dev.uva.prv.modele.service;
 
-import com.dev.uva.prv.entite.Rendezvous;
+import com.dev.uva.prv.modele.entite.Rendezvous;
 
 public interface ServiceRv {
 

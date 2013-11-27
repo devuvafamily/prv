@@ -1,10 +1,10 @@
-package com.dev.uva.prv.dao;
+package com.dev.uva.prv.modele.dao;
 
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dev.uva.prv.entite.Employe;
+import com.dev.uva.prv.modele.entite.Employe;
 
 
 public interface EmployeAD {

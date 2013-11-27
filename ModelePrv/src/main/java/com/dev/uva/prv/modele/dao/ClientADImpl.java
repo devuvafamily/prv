@@ -1,4 +1,4 @@
-package com.dev.uva.prv.dao;
+package com.dev.uva.prv.modele.dao;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dev.uva.prv.entite.Rendezvous;
+import com.dev.uva.prv.modele.entite.Client;
 
 @Configurable
 @Repository
-public class RendezvousADImpl implements RendezvousAD {
+public class ClientADImpl implements ClientAD {
 
 	
     @PersistenceContext
@@ -24,41 +24,41 @@ public class RendezvousADImpl implements RendezvousAD {
     }
 
     @Override
-	public long countRendezvouses() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Rendezvous o", Long.class).getSingleResult();
+	public long countClients() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM Client o", Long.class).getSingleResult();
     }
 
     @Override
-	public List<Rendezvous> findAllRendezvouses() {
-        return entityManager().createQuery("SELECT o FROM Rendezvous o", Rendezvous.class).getResultList();
+	public List<Client> findAllClients() {
+        return entityManager().createQuery("SELECT o FROM Client o", Client.class).getResultList();
     }
 
     @Override
-	public Rendezvous findRendezvous(Integer idRv) {
-        if (idRv == null) return null;
-        return entityManager().find(Rendezvous.class, idRv);
+	public Client findClient(String codeClient) {
+        if (codeClient == null || codeClient.length() == 0) return null;
+        return entityManager().find(Client.class, codeClient);
     }
 
     @Override
-	public List<Rendezvous> findRendezvousEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Rendezvous o", Rendezvous.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-
-    @Override
-	@Transactional
-    public void persist(Rendezvous rendezvous) {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(rendezvous);
+	public List<Client> findClientEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Client o", Client.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
 
     @Override
 	@Transactional
-    public void remove(Rendezvous rendezvous) {
+    public void persist(Client client) {
         if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(rendezvous)) {
-            this.entityManager.remove(rendezvous);
+        this.entityManager.persist(client);
+    }
+
+    @Override
+	@Transactional
+    public void remove(Client client) {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager.contains(client)) {
+            this.entityManager.remove(client);
         } else {
-            Rendezvous attached = this.findRendezvous(rendezvous.getIdRv());
+            Client attached = this.findClient(client.getCodeClient());
             this.entityManager.remove(attached);
         }
     }
@@ -79,9 +79,9 @@ public class RendezvousADImpl implements RendezvousAD {
 
     @Override
 	@Transactional
-    public Rendezvous merge(Rendezvous rendezvous) {
+    public Client merge(Client client) {
         if (this.entityManager == null) this.entityManager = entityManager();
-        Rendezvous merged = this.entityManager.merge(rendezvous);
+        Client merged = this.entityManager.merge(client);
         this.entityManager.flush();
         return merged;
     }

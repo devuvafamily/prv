@@ -1,10 +1,10 @@
-package com.dev.uva.prv.dao;
+package com.dev.uva.prv.modele.dao;
 
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dev.uva.prv.entite.Client;
+import com.dev.uva.prv.modele.entite.Client;
 
 
 public interface ClientAD {

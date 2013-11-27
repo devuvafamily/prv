@@ -1,4 +1,4 @@
-package com.dev.uva.prv.dao;
+package com.dev.uva.prv.modele.dao;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dev.uva.prv.entite.Role;
+import com.dev.uva.prv.modele.entite.Role;
 
 @Configurable
 @Repository

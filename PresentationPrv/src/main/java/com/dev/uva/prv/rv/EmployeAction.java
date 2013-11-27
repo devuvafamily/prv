@@ -6,7 +6,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.dev.uva.prv.commun.PrvBaseAction;
-import com.dev.uva.prv.entite.Employe;
+import com.dev.uva.prv.modele.entite.Employe;
 import com.opensymphony.xwork2.ModelDriven;
 
 public class EmployeAction extends PrvBaseAction implements ModelDriven<Employe>, ServletRequestAware, SessionAware{

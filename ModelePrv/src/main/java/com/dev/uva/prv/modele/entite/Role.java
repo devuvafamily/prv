@@ -1,4 +1,4 @@
-package com.dev.uva.prv.entite;
+package com.dev.uva.prv.modele.entite;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;

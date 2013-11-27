@@ -12,12 +12,18 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dev.uva.prv.commun.PrvBaseAction;
-import com.dev.uva.prv.entite.Rendezvous;
-import com.dev.uva.prv.service.ServiceRv;
+import com.dev.uva.prv.modele.entite.Rendezvous;
+import com.dev.uva.prv.modele.service.ServiceRv;
 import com.opensymphony.xwork2.ModelDriven;
 
 /**
- * Classe traitant les actions liées à une prise de rendez-vous
+ * Classe traitant les actions liées à une prise de rendez-vous.
+ * 
+ * ModelDriven<Rendezvous> permet d'avoir une approche FormBean: il permet de fournir un objet du modele
+ * Sur lequel les données du formulaire vont être stockées. 
+ * L'implémentation de SessionAware permet à l'action d'acceder à la session de l'utilisateur.
+ * L'implémentation de ServletRequestAware permet à l'action d'acceder au Servlet request.
+ *  
  * @author bafal
  *@version Prv - v.1.0
  */
@@ -48,6 +54,8 @@ public class RvAction extends PrvBaseAction implements ModelDriven<Rendezvous>, 
 	private HttpServletRequest request;
 	
 	private Rendezvous rv = new Rendezvous();
+	
+	// Liste des domaines de valeur -- Juste à titre d'exemple
 	
 	private String[] listeSexes = new String[]{"Mr", "Mme", "Autre"};
 	
@@ -108,6 +116,9 @@ public class RvAction extends PrvBaseAction implements ModelDriven<Rendezvous>, 
 		
 	}
 
+	/**
+	 * Permet d'obtenir le modele.
+	 */
 	public Rendezvous getModel() {
 		if(session.get("rv") == null){
 			rv.setNotesRv("une note simple");
@@ -123,6 +134,10 @@ public class RvAction extends PrvBaseAction implements ModelDriven<Rendezvous>, 
 		return AFFICHER;
 	}
 	
+	/**
+	 * Permet de resetter le modele {@link Rendezvous}
+	 * @return
+	 */
 	@SkipValidation
 	public String clearModel(){
 		session.remove(rv);

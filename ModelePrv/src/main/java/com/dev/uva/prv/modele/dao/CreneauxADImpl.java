@@ -1,4 +1,4 @@
-package com.dev.uva.prv.dao;
+package com.dev.uva.prv.modele.dao;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dev.uva.prv.entite.Client;
+import com.dev.uva.prv.modele.entite.Creneaux;
 
 @Configurable
 @Repository
-public class ClientADImpl implements ClientAD {
+public class CreneauxADImpl implements CreneauxAD {
 
 	
     @PersistenceContext
@@ -24,41 +24,41 @@ public class ClientADImpl implements ClientAD {
     }
 
     @Override
-	public long countClients() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Client o", Long.class).getSingleResult();
+	public long countCreneauxes() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM Creneaux o", Long.class).getSingleResult();
     }
 
     @Override
-	public List<Client> findAllClients() {
-        return entityManager().createQuery("SELECT o FROM Client o", Client.class).getResultList();
+	public List<Creneaux> findAllCreneauxes() {
+        return entityManager().createQuery("SELECT o FROM Creneaux o", Creneaux.class).getResultList();
     }
 
     @Override
-	public Client findClient(String codeClient) {
-        if (codeClient == null || codeClient.length() == 0) return null;
-        return entityManager().find(Client.class, codeClient);
+	public Creneaux findCreneaux(Integer idCreneaux) {
+        if (idCreneaux == null) return null;
+        return entityManager().find(Creneaux.class, idCreneaux);
     }
 
     @Override
-	public List<Client> findClientEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Client o", Client.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-
-    @Override
-	@Transactional
-    public void persist(Client client) {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(client);
+	public List<Creneaux> findCreneauxEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Creneaux o", Creneaux.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
 
     @Override
 	@Transactional
-    public void remove(Client client) {
+    public void persist(Creneaux creneaux) {
         if (this.entityManager == null) this.entityManager = entityManager();
-        if (this.entityManager.contains(client)) {
-            this.entityManager.remove(client);
+        this.entityManager.persist(creneaux);
+    }
+
+    @Override
+	@Transactional
+    public void remove(Creneaux creneaux) {
+        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager.contains(creneaux)) {
+            this.entityManager.remove(creneaux);
         } else {
-            Client attached = this.findClient(client.getCodeClient());
+            Creneaux attached = this.findCreneaux(creneaux.getIdCreneaux());
             this.entityManager.remove(attached);
         }
     }
@@ -79,9 +79,9 @@ public class ClientADImpl implements ClientAD {
 
     @Override
 	@Transactional
-    public Client merge(Client client) {
+    public Creneaux merge(Creneaux creneaux) {
         if (this.entityManager == null) this.entityManager = entityManager();
-        Client merged = this.entityManager.merge(client);
+        Creneaux merged = this.entityManager.merge(creneaux);
         this.entityManager.flush();
         return merged;
     }

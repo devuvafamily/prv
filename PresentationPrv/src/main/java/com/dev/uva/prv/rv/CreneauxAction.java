@@ -7,7 +7,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.dev.uva.prv.commun.PrvBaseAction;
-import com.dev.uva.prv.entite.Creneaux;
+import com.dev.uva.prv.modele.entite.Creneaux;
 import com.opensymphony.xwork2.ModelDriven;
 
 public class CreneauxAction extends PrvBaseAction implements ModelDriven<Creneaux>, ServletRequestAware, SessionAware{

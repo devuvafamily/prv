@@ -1,12 +1,12 @@
-package com.dev.uva.prv.service;
+package com.dev.uva.prv.modele.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dev.uva.prv.dao.CreneauxAD;
-import com.dev.uva.prv.dao.EmployeAD;
-import com.dev.uva.prv.dao.RendezvousAD;
-import com.dev.uva.prv.entite.Rendezvous;
+import com.dev.uva.prv.modele.dao.CreneauxAD;
+import com.dev.uva.prv.modele.dao.EmployeAD;
+import com.dev.uva.prv.modele.dao.RendezvousAD;
+import com.dev.uva.prv.modele.entite.Rendezvous;
 
 
 @Service("serviceRv")
