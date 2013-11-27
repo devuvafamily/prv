@@ -277,3 +277,5 @@ PresentationPrv/target/surefire-reports/TEST-com.dev.uva.prv.prv.ConfigTest.xml
 PresentationPrv/target/surefire-reports/TEST-com.dev.uva.prv.prv.ConnexionTest.xml
 
 PresentationPrv/target/surefire-reports/com.dev.uva.prv.prv.ConfigTest.txt
+
+.DS_Store
