@@ -43,7 +43,6 @@ PRV -- Plateforme de Prise de Rendez-vous V.1.0
       
     - Spring permet aussi de créer des beans des classes d'accès aux données et se charge de les initialiser
       Dans applicationContext.xml .. ligne 72 à 78
-
     
 ~~~~
         <bean id="clientADImpl"  class="com.dev.uva.prv.modele.dao.ClientADImpl"/>
