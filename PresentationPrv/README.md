@@ -32,26 +32,29 @@ PRV -- Plateforme de Prise de Rendez-vous V.1.0
      de créer la DATASOURCE pour la connexion à la BD  
     - datasource de connexion à MYSQL: 
       Dans applicationContext.xml .. ligne 50
-
+~~~~
       <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="url" value="${database.url}"/>
         <property name="username" value="${database.username}"/>
         <property name="password" value="${database.password}"/>
       </bean>  
+~~~~
       
     - Spring permet aussi de créer des beans des classes d'accès aux données et se charge de les initialiser
       Dans applicationContext.xml .. ligne 72 à 78
-      
+
+~~~~      
         <bean id="clientADImpl"  class="com.dev.uva.prv.modele.dao.ClientADImpl"/>
         <bean id="creneauxADImpl"  class="com.dev.uva.prv.modele.dao.CreneauxADImpl"/>  
         <bean id="serviceRv" class="com.dev.uva.prv.modele.service.ServiceRvImpl" />
+~~~~        
         
       La création des beans précédents permet à la couche METIER de se dispenser de l'instanciation des classes d'accès
        aux données qu'elle va appeler.
        Exemple : Si l'on veut utiliser le service ServiceRvImpl du modele dans la couche METIER, par exemple dans 
        RvAction.java par injection de dépendances 
-       (<bean id="serviceRv" class="com.dev.uva.prv.modele.service.ServiceRvImpl" />)
+       ~~~~(<bean id="serviceRv" class="com.dev.uva.prv.modele.service.ServiceRvImpl" />)~~~~
        
        
      Exemple :
@@ -82,16 +85,19 @@ et @Transcationnal pour qu'elle puisse faire des transcations avec la BD (Insert
 Permet de définir les diferentes actions. L'action est déclarée par le mot clé action, suivi du nom de la classe qui l'interprète, 
 puis du nom de la méthode de la classe d'action, et enfin des JSP où seront redirigés les résultats.  
 Exemple : 
+    ~~~~
         <action name="rv" method="executer" class="com.dev.uva.prv.rv.RvAction">
             <result name="afficher">/prv/rv.jsp</result>
         </action>
+   ~~~~     
        Dans la classe qui interprete l'action (RvAction) voici la methode execute :
-       
+    ~~~~   
             public String executer(){
               // Traitement ici 
               return "afficher"; // ce qui va permettre de se rediriger vers la jsp rv.jsp
                                  // (<result name="afficher">/prv/rv.jsp</result>)
             }
+   ~~~~         
             
 ##WEB.XML
 
@@ -99,7 +105,8 @@ Exemple :
 est le descripteur de déploiement de toute application Web. Dans notre cas, il contient les classes intercepteurs de Struts2;
  - les deux principalement utilisés sont : FilterDispatcher et StrutsPrepareAndExecuteFilter. Il est preferable d'utiliser 
  StrutsPrepareAndExecuteFilter si la version de Struts est supérieure à 2.1.3. 
-   <filter>
+~~~~  
+ <filter>
     <filter-name>struts2</filter-name>
     <filter-class>
       org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
@@ -109,8 +116,10 @@ est le descripteur de déploiement de toute application Web. Dans notre cas, il 
   <filter-mapping>
     <filter-name>struts2</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>  
+  </filter-mapping> 
+~~~~  
 Le fichier contient aussi le contexte de Spring et le lsiterner (nécessaires pour le chargement des beans)    
+  ~~~~
      <!--  contexte d'applications Spring à charger -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -121,7 +130,7 @@ Le fichier contient aussi le contexte de Spring et le lsiterner (nécessaires po
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
-  
+  ~~~~ 
   TO BE CONTINUED .....   
       
        
