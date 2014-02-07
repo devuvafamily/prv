@@ -74,12 +74,11 @@ l'annotation @Autowired permet de spécifier que l'objet est créé par injectio
 d'ajouter l'annotation @Configurable dans l'entente de la classe pour cette dernière soit configurable par Spring
 et @Transcationnal pour qu'elle puisse faire des transcations avec la BD (Insert, delete, ajout ...)
           
-       
-//------------------------------------------------------------------------------------------------------------------------------------//  
+ 
 
-##Struts
+##Struts.xml
 
---- STRUTS.XML  -----
+
 Permet de définir les diferentes actions. L'action est déclarée par le mot clé action, suivi du nom de la classe qui l'interprète, 
 puis du nom de la méthode de la classe d'action, et enfin des JSP où seront redirigés les résultats.  
 Exemple : 
@@ -90,10 +89,13 @@ Exemple :
        
             public String executer(){
               // Traitement ici 
-              return "afficher"; // ce qui va permettre de se rediriger vers la jsp rv.jsp (<result name="afficher">/prv/rv.jsp</result>)
+              return "afficher"; // ce qui va permettre de se rediriger vers la jsp rv.jsp
+                                 // (<result name="afficher">/prv/rv.jsp</result>)
             }
             
---- WEB.XML  --------  
+##WEB.XML
+
+
 est le descripteur de déploiement de toute application Web. Dans notre cas, il contient les classes intercepteurs de Struts2;
  - les deux principalement utilisés sont : FilterDispatcher et StrutsPrepareAndExecuteFilter. Il est preferable d'utiliser 
  StrutsPrepareAndExecuteFilter si la version de Struts est supérieure à 2.1.3. 
