@@ -1,7 +1,7 @@
 PRV -- Plateforme de Prise de Rendez-vous V.1.0
 -----------------------------------------------------------------
 
-Découpage du Projet: 
+##Découpage du Projet: 
 
 1. Couche WEB : composée principalement des pages JSP et permet à l'utilisateur d'interagir avec l'application.
    Struts2 intervient principalement à ce niveau.  
@@ -48,7 +48,9 @@ Découpage du Projet:
        Exemple : Si l'on veut utiliser le service ServiceRvImpl du modele dans la couche METIER, par exemple dans 
        RvAction.java par injection de dépendances (<bean id="serviceRv" class="com.dev.uva.prv.modele.service.ServiceRvImpl" />)
        
+       
           Code :
+          
           @Autowired
           private ServiceRv service; 
           
@@ -56,12 +58,15 @@ Découpage du Projet:
           	// Exemple d'acces aux methodes
           	service.ajouterRv();
           }
+          
           l'annotation @Autowired permet de spécifier que l'objet est créé par injection de dépendances. Il est important
           d'ajouter l'annotation @Configurable dans l'entente de la classe pour cette dernière soit configurable par Spring
           et @Transcationnal pour qu'elle puisse faire des transcations avec la BD (Insert, delete, ajout ...)
           
        
 //------------------------------------------------------------------------------------------------------------------------------------//  
+
+##Struts
 
 --- STRUTS.XML  -----
 Permet de définir les diferentes actions. L'action est déclarée par le mot clé action, suivi du nom de la classe qui l'interprète, 
