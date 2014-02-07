@@ -25,43 +25,54 @@ PRV -- Plateforme de Prise de Rendez-vous V.1.0
                   BD MYSQL -PRV                |         MODELEPRV 
     -------------------------------------------|-------------------------------------------------------
                   RENDEZ_VOUS                  |            RendezVous.java
-                  CRENEAUX <--------------HIBERNATE-------->Creneaux.java
+                  CRENEAUX                     |            Creneaux.java
                   CLIENT                       |            Client.java
     
     SPRING intervient dans cette couche(fichier src/main/resources/META-INF/spring/applicationContext.xml  ); il permet
      de créer la DATASOURCE pour la connexion à la BD  
     - datasource de connexion à MYSQL: 
       Dans applicationContext.xml .. ligne 50
+
       <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="url" value="${database.url}"/>
         <property name="username" value="${database.username}"/>
         <property name="password" value="${database.password}"/>
       </bean>  
+      
     - Spring permet aussi de créer des beans des classes d'accès aux données et se charge de les initialiser
       Dans applicationContext.xml .. ligne 72 à 78
+      
         <bean id="clientADImpl"  class="com.dev.uva.prv.modele.dao.ClientADImpl"/>
         <bean id="creneauxADImpl"  class="com.dev.uva.prv.modele.dao.CreneauxADImpl"/>  
         <bean id="serviceRv" class="com.dev.uva.prv.modele.service.ServiceRvImpl" />
+        
       La création des beans précédents permet à la couche METIER de se dispenser de l'instanciation des classes d'accès
        aux données qu'elle va appeler.
        Exemple : Si l'on veut utiliser le service ServiceRvImpl du modele dans la couche METIER, par exemple dans 
-       RvAction.java par injection de dépendances (<bean id="serviceRv" class="com.dev.uva.prv.modele.service.ServiceRvImpl" />)
+       RvAction.java par injection de dépendances 
+       (<bean id="serviceRv" class="com.dev.uva.prv.modele.service.ServiceRvImpl" />)
        
        
-          Code :
+     Exemple :
+          
+          /**
+          *
+          * Exemple d'accès au service du modèle
+          */
           
           @Autowired
           private ServiceRv service; 
           
           public void testInjection(){
-          	// Exemple d'acces aux methodes
+          
           	service.ajouterRv();
           }
           
-          l'annotation @Autowired permet de spécifier que l'objet est créé par injection de dépendances. Il est important
-          d'ajouter l'annotation @Configurable dans l'entente de la classe pour cette dernière soit configurable par Spring
-          et @Transcationnal pour qu'elle puisse faire des transcations avec la BD (Insert, delete, ajout ...)
+          
+l'annotation @Autowired permet de spécifier que l'objet est créé par injection de dépendances. Il est important
+d'ajouter l'annotation @Configurable dans l'entente de la classe pour cette dernière soit configurable par Spring
+et @Transcationnal pour qu'elle puisse faire des transcations avec la BD (Insert, delete, ajout ...)
           
        
 //------------------------------------------------------------------------------------------------------------------------------------//  
