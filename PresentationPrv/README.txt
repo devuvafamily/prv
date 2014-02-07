@@ -3,15 +3,16 @@ PRV -- Plateforme de Prise de Rendez-vous V.1.0
 
 Découpage du Projet: 
 
-1. Couche WEB : composée principalement des pages JSP et permet àl'utilisateur d'interagir avec l'application.
+1. Couche WEB : composée principalement des pages JSP et permet à l'utilisateur d'interagir avec l'application.
    Struts2 intervient principalement à ce niveau.  
    
    
-2. Couche MÉTIER (Controlleur) : représente les classes d'Action qui implémente la logique de l'application, dans le cas présent : 
+2. Couche MÉTIER (Controlleur) : représente les classes d'Actions. Elle implémente la logique de l'application, dans le cas présent : 
       - ajouterRendez(), supprimerRendezvous(), ajouterClient(), modifierInfosUtilisateur() ... 
-   Cette couche utilise les données des formulaires de la couche WEB et les données de la Base de données de la 
-   couche DAO. Dans e projet actuel, cette couche est composé principalement des classe nommées [mot_cle+Action.java] 
-   exemple: RvAction.java. Cette dernière étend la classe ActionSupport de Struts2
+   Cette couche utilise les données des formulaires de la couche WEB(JSP) et les données de la couche DAO( Couche d'accès aux données). 
+   Dans le projet actuel, cette couche est composée principalement des classes nommées [mot_cle+Action.java] 
+   exemple: RvAction.java. Cette dernière étend la classe ActionSupport de Struts2. La classe ActionSupport fournit une implémentation 
+   par défaut des actions les plus courantes de Struts2. 
    
    
 3. Couche d'accès aux données DAO : Dans ce projet le module ModelePrv représente la couche DAO et permet la 
