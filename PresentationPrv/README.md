@@ -44,21 +44,24 @@ PRV -- Plateforme de Prise de Rendez-vous V.1.0
     - Spring permet aussi de créer des beans des classes d'accès aux données et se charge de les initialiser
       Dans applicationContext.xml .. ligne 72 à 78
 
-~~~~      
+    
+~~~~
         <bean id="clientADImpl"  class="com.dev.uva.prv.modele.dao.ClientADImpl"/>
         <bean id="creneauxADImpl"  class="com.dev.uva.prv.modele.dao.CreneauxADImpl"/>  
         <bean id="serviceRv" class="com.dev.uva.prv.modele.service.ServiceRvImpl" />
-~~~~        
+~~~~      
         
-      La création des beans précédents permet à la couche METIER de se dispenser de l'instanciation des classes d'accès
-       aux données qu'elle va appeler.
-       Exemple : Si l'on veut utiliser le service ServiceRvImpl du modele dans la couche METIER, par exemple dans 
-       RvAction.java par injection de dépendances 
-       ~~~~(<bean id="serviceRv" class="com.dev.uva.prv.modele.service.ServiceRvImpl" />)~~~~
+        
+ La création des beans précédents permet à la couche METIER de se dispenser de l'instanciation des classes d'accès
+ aux données qu'elle va appeler.
+ Exemple : Si l'on veut utiliser le service ServiceRvImpl du modele dans la couche METIER, par exemple dans 
+ RvAction.java par injection de dépendances 
+ (bean id="serviceRv" class="com.dev.uva.prv.modele.service.ServiceRvImpl" )
        
        
      Exemple :
-          
+
+~~~~          
           /**
           *
           * Exemple d'accès au service du modèle
@@ -71,7 +74,7 @@ PRV -- Plateforme de Prise de Rendez-vous V.1.0
           
           	service.ajouterRv();
           }
-          
+  ~~~~        
           
 l'annotation @Autowired permet de spécifier que l'objet est créé par injection de dépendances. Il est important
 d'ajouter l'annotation @Configurable dans l'entente de la classe pour cette dernière soit configurable par Spring
@@ -85,19 +88,23 @@ et @Transcationnal pour qu'elle puisse faire des transcations avec la BD (Insert
 Permet de définir les diferentes actions. L'action est déclarée par le mot clé action, suivi du nom de la classe qui l'interprète, 
 puis du nom de la méthode de la classe d'action, et enfin des JSP où seront redirigés les résultats.  
 Exemple : 
-    ~~~~
+
+~~~~
         <action name="rv" method="executer" class="com.dev.uva.prv.rv.RvAction">
             <result name="afficher">/prv/rv.jsp</result>
         </action>
-   ~~~~     
-       Dans la classe qui interprete l'action (RvAction) voici la methode execute :
-    ~~~~   
+~~~~ 
+
+
+Dans la classe qui interprete l'action (RvAction) voici la methode execute :
+
+~~~~  
             public String executer(){
               // Traitement ici 
               return "afficher"; // ce qui va permettre de se rediriger vers la jsp rv.jsp
                                  // (<result name="afficher">/prv/rv.jsp</result>)
             }
-   ~~~~         
+~~~~         
             
 ##WEB.XML
 
@@ -118,8 +125,10 @@ est le descripteur de déploiement de toute application Web. Dans notre cas, il 
     <url-pattern>/*</url-pattern>
   </filter-mapping> 
 ~~~~  
-Le fichier contient aussi le contexte de Spring et le lsiterner (nécessaires pour le chargement des beans)    
-  ~~~~
+
+Le fichier contient aussi le contexte de Spring et le lsiterner (nécessaires pour le chargement des beans)   
+
+~~~~
      <!--  contexte d'applications Spring à charger -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -130,7 +139,8 @@ Le fichier contient aussi le contexte de Spring et le lsiterner (nécessaires po
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
-  ~~~~ 
+~~~~
+
   TO BE CONTINUED .....   
       
        
