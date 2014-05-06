@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,6 +51,19 @@ public class Role {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(style = "M-")
     private Date dateModif;
+	
+	
+    @ManyToOne
+    @JoinColumn(name = "CODE_UTILISATEUR", referencedColumnName = "CODE_UTILISATEUR", nullable = false)
+    private Employe codeUtilisateur;
+    
+    public Employe getCodeUtilisateur() {
+        return codeUtilisateur;
+    }
+
+    public void setCodeUtilisateur(Employe codeUtilisateur) {
+        this.codeUtilisateur = codeUtilisateur;
+    }
 
 	public String getCodeApplication() {
         return codeApplication;

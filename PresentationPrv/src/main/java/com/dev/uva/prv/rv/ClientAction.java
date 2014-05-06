@@ -1,12 +1,9 @@
 package com.dev.uva.prv.rv;
 
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
-
 import com.dev.uva.prv.commun.PrvBaseAction;
 import com.dev.uva.prv.modele.entite.Client;
 import com.opensymphony.xwork2.ModelDriven;

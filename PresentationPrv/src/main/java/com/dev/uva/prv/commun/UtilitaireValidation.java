@@ -4,6 +4,8 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
+import com.dev.uva.prv.modele.entite.Rendezvous;
+
 /**
  * Classe utilitaire de validation 
  * @author bafal
@@ -17,7 +19,7 @@ public class UtilitaireValidation {
 	 */
 	private static final String REGEX_COURRIEL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$";
 	private static final String REGEX_MOTDEPASSE = "^(?=(.*[0-9]){2,})(?=(.*[A-Za-z]){6,})[A-Za-z0-9]{8,}$";
-	private static final String REGEX_TELEPHONE =    "\\d{3}-\\d{3}-\\d{4}";//"\\d{10,14}";
+	private static final String REGEX_TELEPHONE =    "\\d{3}-\\d{3}-\\d{4}";
 	
 	/**
 	 * Journalisation LOG4J - (A ne pas oublier--> très utile lors du debugage )
@@ -36,13 +38,14 @@ public class UtilitaireValidation {
 	 * @return <code>True</code> si le format est valide.
 	 * @throws PrvException 
 	 */
-	public boolean validerCourriel(String courriel) throws PrvException{
+	public static boolean validerCourriel(String courriel){
 		if(!isFormatCourrielValide(courriel)){
-			logger.debug(new PrvException());
-			throw new PrvException("Le format du courriel est invalide");
+			//logger.debug(new PrvException());
+			//throw new PrvException("Le format du courriel est invalide");
+			return false;
 			
 		}
-		return false;
+		return true;
 		
 	}
 	
@@ -52,8 +55,10 @@ public class UtilitaireValidation {
 	 * @param courriel le courriel du client
 	 * @return <code>True</code> si le format est valide.
 	 */
-	public boolean isFormatCourrielValide(String courriel){
+	public static boolean isFormatCourrielValide(String courriel){
 		Pattern pattern = Pattern.compile(REGEX_COURRIEL);
         return pattern.matcher(courriel).matches();
 	}
+	
+
 }

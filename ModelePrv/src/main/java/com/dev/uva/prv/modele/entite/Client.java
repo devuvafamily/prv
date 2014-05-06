@@ -1,5 +1,7 @@
 package com.dev.uva.prv.modele.entite;
+import java.util.Date;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,10 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "client")
@@ -18,7 +23,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CODE_CLIENT", length = 50)
     private String codeClient;
 
@@ -74,8 +79,21 @@ public class Client {
 
     @Column(name = "MOT_DE_PASSE", length = 50)
     private String motDePasse;
+    
+    @Column(name = "DATE_NAISSANCE")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(style = "M-")
+    private Date dateNaissance;
 
-    public Set<Rendezvous> getRendezvouses() {
+    public Date getDateNaissance() {
+		return dateNaissance;
+	}
+
+	public void setDateNaissance(Date dateNaissance) {
+		this.dateNaissance = dateNaissance;
+	}
+
+	public Set<Rendezvous> getRendezvouses() {
         return rendezvouses;
     }
 

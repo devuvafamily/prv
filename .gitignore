@@ -1,4 +1,7 @@
 
+.DS_Store
+PresentationPrv/target/
+ModelePrv/target/
 ModelePrv/.classpath
 
 ModelePrv/.settings/org.eclipse.wst.common.project.facet.core.xml
@@ -20,8 +23,6 @@ ModelePrv/.gitignore
 PresentationPrv/.classpath
 
 PresentationPrv/.project
-
-PresentationPrv/.gitignore
 
 PresentationPrv/.settings/.jsdtscope
 
@@ -278,4 +279,4 @@ PresentationPrv/target/surefire-reports/TEST-com.dev.uva.prv.prv.ConnexionTest.x
 
 PresentationPrv/target/surefire-reports/com.dev.uva.prv.prv.ConfigTest.txt
 
-.DS_Store
+PresentationPrv/target/PresentationPrv-0.0.1-SNAPSHOT/WEB-INF/classes/builddef.lst

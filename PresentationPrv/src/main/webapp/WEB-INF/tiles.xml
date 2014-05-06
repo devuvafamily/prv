@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="baseLayout" template="/commun/maquette.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="pivHaut" value="/commun/hautPage.jsp" />
+        <put-attribute name="menu" value="/commun/menu.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="pivBas" value="/commun/basPage.jsp" />
+    </definition>
+    
+    <definition name="/connexion.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Prv ::. Bienvenue" />
+        <put-attribute name="body" value="/prv/connexion.jsp" />
+    </definition>
+    <definition name="/prv.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Prv ::. Formulaire de prise de Rendez-vous" />
+        <put-attribute name="body" value="/prv/rv.jsp" />
+    </definition>
+    <definition name="/validation.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Prv ::. Validation" />
+        <put-attribute name="body" value="/prv/validation.jsp" />
+    </definition>
+</tiles-definitions>

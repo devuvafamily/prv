@@ -1,5 +1,7 @@
 package com.dev.uva.prv.modele.entite;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +26,7 @@ public class Rendezvous {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_RV")
     private Integer idRv;
 
@@ -37,10 +39,10 @@ public class Rendezvous {
     }
 
     @ManyToOne
-    @JoinColumn(name = "ID_CRENEAUX", referencedColumnName = "ID_CRENEAUX", nullable = false)
+    @JoinColumn(name = "ID_CRENEAUX", referencedColumnName = "ID_CRENEAUX")
     private Creneaux idCreneaux;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(name = "CODE_CLIENT", referencedColumnName = "CODE_CLIENT", nullable = false)
     private Client codeClient;
 
@@ -52,8 +54,41 @@ public class Rendezvous {
 
     @Column(name = "NOTES_RV", length = 500)
     private String notesRv;
+    
+    @Column(name = "MODE_COMMUNICATION", length = 200)
+    private String modeCommunication;
+    
+    @Column(name = "NATURE_DEMANDE", length = 200)
+    private String natureDemande;
+    
+    @Column(name = "NATURE_DMD_AUTRE", length = 200)
+    private String natureDemandeAutre;
 
-    public Creneaux getIdCreneaux() {
+    public String getNatureDemandeAutre() {
+		return natureDemandeAutre;
+	}
+
+	public void setNatureDemandeAutre(String natureDemandeAutre) {
+		this.natureDemandeAutre = natureDemandeAutre;
+	}
+
+	public String getNatureDemande() {
+		return natureDemande;
+	}
+
+	public void setNatureDemande(String natureDemande) {
+		this.natureDemande = natureDemande;
+	}
+
+	public String getModeCommunication() {
+		return modeCommunication;
+	}
+
+	public void setModeCommunication(String modeCommunication) {
+		this.modeCommunication = modeCommunication;
+	}
+
+	public Creneaux getIdCreneaux() {
         return idCreneaux;
     }
 
