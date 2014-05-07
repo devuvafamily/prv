@@ -14,6 +14,23 @@
 .errors li {
 	list-style: none;
 }
+
+.errorsBg{
+	background-color:#fdd;
+	color:red;	
+	border: 1px solid;
+}
+ 
+.errorMessage{
+	padding:0px 8px;
+}
+ 
+table{
+	border-spacing: 2px;
+}
+td{
+	padding:2px;
+}
 </style>
 <script type="text/javascript">
 	function desactiverChamp(id) {
@@ -48,6 +65,25 @@
 </s:if>
 <s:form action="rv" namespace="/prv" method="POST">
 
+	<s:url id="localeEN" namespace="/prv" action="rv">
+		<s:param name="request_locale">en</s:param>
+	</s:url>
+	<s:url id="localeFR" namespace="/prv" action="rv">
+		<s:param name="request_locale">fr</s:param>
+	</s:url>
+	<s:div>
+		<s:if test="langue=='fr'">
+			<s:a href="%{localeEN}">
+				<s:text name="prv.langue"></s:text>
+			</s:a>
+		</s:if>
+		<s:if test="langue=='en'">
+			<s:a href="%{localeFR}">
+				<s:text name="prv.langue"></s:text>
+			</s:a>
+		</s:if>
+
+	</s:div>
 	<fieldset>
 		<legend>
 			<s:text name="client.legend" />

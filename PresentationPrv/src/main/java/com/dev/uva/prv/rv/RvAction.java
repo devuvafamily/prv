@@ -1,6 +1,7 @@
 package com.dev.uva.prv.rv;
 
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +18,7 @@ import com.dev.uva.prv.commun.PrvBaseAction;
 import com.dev.uva.prv.commun.UtilitaireValidation;
 import com.dev.uva.prv.modele.entite.Rendezvous;
 import com.dev.uva.prv.modele.service.ServiceRv;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 
 /**
@@ -75,6 +77,23 @@ public class RvAction extends PrvBaseAction implements ModelDriven<Rendezvous>,
 
 	private String[] listeNatureDemande = new String[] { "Passeport", "Visa",
 			"Carte d'identite", "Autres" };
+
+	private String langue;
+
+	public String getLangue() {
+		//ActionContext.getContext().get
+
+		if(estVide(langue)){
+			//ActionContext ctx = ActionContext.getContext();
+			//ctx.setLocale(Locale.FRANCE);
+			langue = this.getLocale().getLanguage();
+		}
+		return langue;
+	}
+
+	public void setLangue(String langue) {
+		this.langue = langue;
+	}
 
 	public String[] getListeNatureDemande() {
 		return listeNatureDemande;
@@ -182,20 +201,20 @@ public class RvAction extends PrvBaseAction implements ModelDriven<Rendezvous>,
 	public String soumettreRv() {
 		// Traitement ici ...
 		// Un exemple d'utilisation du service
-        if(validerFormulaire(this.getRv())){
-    		try {
-    			logger.info("PRV : Méthode d'ajout d'un RV");
-    			serviceRv.ajouterRendezVous(this.getRv());
-    			logger.info("PRV : Nouveau RV ajouté pour le client ["
-    					+ this.getRv().getCodeClient().getPrenom() + " "
-    					+ this.getRv().getCodeClient().getPrenom() + "]la date du "
-    					+ this.getRv().getJourRv());
-    		} catch (Exception e) {
-    			logger.error(e.getMessage(), e);
-    		}
-        } else {
-        	return AFFICHER;
-        }
+		if (validerFormulaire(this.getRv())) {
+			try {
+				logger.info("PRV : Méthode d'ajout d'un RV");
+				serviceRv.ajouterRendezVous(this.getRv());
+				logger.info("PRV : Nouveau RV ajouté pour le client ["
+						+ this.getRv().getCodeClient().getPrenom() + " "
+						+ this.getRv().getCodeClient().getPrenom()
+						+ "]la date du " + this.getRv().getJourRv());
+			} catch (Exception e) {
+				logger.error(e.getMessage(), e);
+			}
+		} else {
+			return AFFICHER;
+		}
 		return VALIDATION;
 	}
 
@@ -208,66 +227,78 @@ public class RvAction extends PrvBaseAction implements ModelDriven<Rendezvous>,
 		// Traitement ici ...
 		return AFFICHER;
 	}
-	
+
 	/**
 	 * Validation du formulaire avant sauvegarde des données dans la BD.
-	 * @param formulaire le formulaire saisi.
+	 * 
+	 * @param formulaire
+	 *            le formulaire saisi.
 	 * @return <code>true</code> si le formulaire est valide.
 	 */
-	public boolean validerFormulaire(Rendezvous formulaire){
+	public boolean validerFormulaire(Rendezvous formulaire) {
 		boolean result = true;
 		int compteurErr = 0;
 		String msgMandatory = getText("prv.champObligatoire");
-		if(formulaire.getCodeClient() == null || estVide(formulaire.getCodeClient().getCodeClient())){
+		if (formulaire.getCodeClient() == null
+				|| estVide(formulaire.getCodeClient().getCodeClient())) {
 			addFieldError("rv.codeClient.codeClient", msgMandatory);
 			result = false;
 			compteurErr++;
 		}
-		if(formulaire.getCodeClient() == null || estVide(formulaire.getCodeClient().getNom())){
+		if (formulaire.getCodeClient() == null
+				|| estVide(formulaire.getCodeClient().getNom())) {
 			addFieldError("rv.codeClient.nom", msgMandatory);
 			result = false;
 			compteurErr++;
 		}
-		if(formulaire.getCodeClient() == null || estVide(formulaire.getCodeClient().getPrenom())){
+		if (formulaire.getCodeClient() == null
+				|| estVide(formulaire.getCodeClient().getPrenom())) {
 			addFieldError("rv.codeClient.prenom", msgMandatory);
 			result = false;
 			compteurErr++;
 		}
-		if(formulaire.getCodeClient() == null || estVide(formulaire.getCodeClient().getAdresse())){
+		if (formulaire.getCodeClient() == null
+				|| estVide(formulaire.getCodeClient().getAdresse())) {
 			addFieldError("rv.codeClient.adresse", msgMandatory);
 			result = false;
 			compteurErr++;
 		}
-		if(formulaire.getCodeClient() == null || estVide(formulaire.getCodeClient().getCourriel())){
+		if (formulaire.getCodeClient() == null
+				|| estVide(formulaire.getCodeClient().getCourriel())) {
 			addFieldError("rv.codeClient.courriel", msgMandatory);
 			result = false;
 			compteurErr++;
 		}
-		if(!estVide(formulaire.getCodeClient().getCourriel()) && 
-				!UtilitaireValidation.validerCourriel(formulaire.getCodeClient().getCourriel())){
-			addFieldError("rv.codeClient.courriel", getText("prv.courriel.invalide"));
+		if (!estVide(formulaire.getCodeClient().getCourriel())
+				&& !UtilitaireValidation.validerCourriel(formulaire
+						.getCodeClient().getCourriel())) {
+			addFieldError("rv.codeClient.courriel",
+					getText("prv.courriel.invalide"));
 			result = false;
 			compteurErr++;
 		}
-		if(formulaire.getJourRv() == null){
+		if (formulaire.getJourRv() == null) {
 			addFieldError("rv.jourRv", msgMandatory);
 			result = false;
 			compteurErr++;
 		}
-		if("Autres".equals(formulaire.getNatureDemande()) &&  estVide(formulaire.getNatureDemandeAutre())){
-			addFieldError("rv.natureDemandeAutre", getText("prv.natureAutre.obligatoire"));
+		if ("Autres".equals(formulaire.getNatureDemande())
+				&& estVide(formulaire.getNatureDemandeAutre())) {
+			addFieldError("rv.natureDemandeAutre",
+					getText("prv.natureAutre.obligatoire"));
 			result = false;
 			compteurErr++;
 		}
-		
-		if(result == false){
-			addActionError("Le formulaire contient "+compteurErr+" erreur(s)");
+
+		if (result == false) {
+			addActionError("Le formulaire contient " + compteurErr
+					+ " erreur(s)");
 		}
 		return result;
 	}
-	
-	public boolean estVide(String valeur){
-		if(valeur != null && !valeur.isEmpty()){
+
+	public boolean estVide(String valeur) {
+		if (valeur != null && !valeur.isEmpty()) {
 			return false;
 		}
 		return true;
