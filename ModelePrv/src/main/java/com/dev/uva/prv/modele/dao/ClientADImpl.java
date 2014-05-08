@@ -17,7 +17,7 @@ public class ClientADImpl implements ClientAD {
 
 	
     @PersistenceContext
-    EntityManager entityManager;
+    private transient EntityManager entityManager;
 
     public final EntityManager entityManager() {
         return entityManager;
@@ -35,7 +35,9 @@ public class ClientADImpl implements ClientAD {
 
     @Override
 	public Client findClient(String codeClient) {
-        if (codeClient == null || codeClient.length() == 0) return null;
+        if (codeClient == null || codeClient.length() == 0) {
+        	return null;
+        }
         return entityManager().find(Client.class, codeClient);
     }
 
@@ -47,14 +49,18 @@ public class ClientADImpl implements ClientAD {
     @Override
 	@Transactional
     public void persist(Client client) {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         this.entityManager.persist(client);
     }
 
     @Override
 	@Transactional
     public void remove(Client client) {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         if (this.entityManager.contains(client)) {
             this.entityManager.remove(client);
         } else {
@@ -66,21 +72,27 @@ public class ClientADImpl implements ClientAD {
     @Override
 	@Transactional
     public void flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         this.entityManager.flush();
     }
 
     @Override
 	@Transactional
     public void clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         this.entityManager.clear();
     }
 
     @Override
 	@Transactional
     public Client merge(Client client) {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         Client merged = this.entityManager.merge(client);
         this.entityManager.flush();
         return merged;

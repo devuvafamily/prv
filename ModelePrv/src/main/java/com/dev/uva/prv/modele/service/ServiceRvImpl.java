@@ -15,13 +15,13 @@ import com.dev.uva.prv.modele.entite.Rendezvous;
 public class ServiceRvImpl implements ServiceRv {
 	
 	@Autowired
-	RendezvousAD daoRv;
+	private RendezvousAD daoRv;
 	@Autowired
-	EmployeAD daoEmploye;
+	private EmployeAD daoEmploye;
 	@Autowired
-	CreneauxAD daoCreneaux;
+	private CreneauxAD daoCreneaux;
 	@Autowired
-	ClientAD daoClient;
+	private ClientAD daoClient;
 	
 	@Override
 	public void ajouterRendezVous(Rendezvous rendezvous){

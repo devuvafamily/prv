@@ -17,7 +17,7 @@ public class CreneauxADImpl implements CreneauxAD {
 
 	
     @PersistenceContext
-    EntityManager entityManager;
+    private transient EntityManager entityManager;
 
     public final EntityManager entityManager() {
         return entityManager;
@@ -35,7 +35,9 @@ public class CreneauxADImpl implements CreneauxAD {
 
     @Override
 	public Creneaux findCreneaux(Integer idCreneaux) {
-        if (idCreneaux == null) return null;
+        if (idCreneaux == null) {
+        	return null;
+        }
         return entityManager().find(Creneaux.class, idCreneaux);
     }
 
@@ -47,14 +49,18 @@ public class CreneauxADImpl implements CreneauxAD {
     @Override
 	@Transactional
     public void persist(Creneaux creneaux) {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         this.entityManager.persist(creneaux);
     }
 
     @Override
 	@Transactional
     public void remove(Creneaux creneaux) {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         if (this.entityManager.contains(creneaux)) {
             this.entityManager.remove(creneaux);
         } else {
@@ -66,21 +72,27 @@ public class CreneauxADImpl implements CreneauxAD {
     @Override
 	@Transactional
     public void flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         this.entityManager.flush();
     }
 
     @Override
 	@Transactional
     public void clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         this.entityManager.clear();
     }
 
     @Override
 	@Transactional
     public Creneaux merge(Creneaux creneaux) {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         Creneaux merged = this.entityManager.merge(creneaux);
         this.entityManager.flush();
         return merged;

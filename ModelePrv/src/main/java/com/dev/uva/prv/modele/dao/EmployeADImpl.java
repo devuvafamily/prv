@@ -16,7 +16,7 @@ import com.dev.uva.prv.modele.entite.Employe;
 public class EmployeADImpl implements EmployeAD {
 
 	 @PersistenceContext
-	    EntityManager entityManager;
+	 private transient EntityManager entityManager;
 
 	    public  final EntityManager entityManager() {
 	        return entityManager;
@@ -34,7 +34,9 @@ public class EmployeADImpl implements EmployeAD {
 
 	    @Override
 		public Employe findEmploye(String codeUtilisateur) {
-	        if (codeUtilisateur == null || codeUtilisateur.length() == 0) return null;
+	        if (codeUtilisateur == null || codeUtilisateur.length() == 0) {
+	        	return null;
+	        }
 	        return entityManager().find(Employe.class, codeUtilisateur);
 	    }
 
@@ -46,14 +48,18 @@ public class EmployeADImpl implements EmployeAD {
 	    @Override
 		@Transactional
 	    public void persist(Employe employe) {
-	        if (this.entityManager == null) this.entityManager = entityManager();
+	        if (this.entityManager == null) {
+	        	this.entityManager = entityManager();
+	        }
 	        this.entityManager.persist(employe);
 	    }
 
 	    @Override
 		@Transactional
 	    public void remove(Employe employe) {
-	        if (this.entityManager == null) this.entityManager = entityManager();
+	        if (this.entityManager == null) {
+	        	this.entityManager = entityManager();
+	        }
 	        if (this.entityManager.contains(employe)) {
 	            this.entityManager.remove(employe);
 	        } else {
@@ -65,21 +71,27 @@ public class EmployeADImpl implements EmployeAD {
 	    @Override
 		@Transactional
 	    public void flush() {
-	        if (this.entityManager == null) this.entityManager = entityManager();
+	        if (this.entityManager == null) {
+	        	this.entityManager = entityManager();
+	        }
 	        this.entityManager.flush();
 	    }
 
 	    @Override
 		@Transactional
 	    public void clear() {
-	        if (this.entityManager == null) this.entityManager = entityManager();
+	        if (this.entityManager == null) {
+	        	this.entityManager = entityManager();
+	        }
 	        this.entityManager.clear();
 	    }
 
 	    @Override
 		@Transactional
 	    public Employe merge(Employe employe) {
-	        if (this.entityManager == null) this.entityManager = entityManager();
+	        if (this.entityManager == null) {
+	        	this.entityManager = entityManager();
+	        }
 	        Employe merged = this.entityManager.merge(employe);
 	        this.entityManager.flush();
 	        return merged;

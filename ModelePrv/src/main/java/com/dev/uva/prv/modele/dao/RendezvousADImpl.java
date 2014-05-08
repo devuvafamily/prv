@@ -17,7 +17,7 @@ public class RendezvousADImpl implements RendezvousAD {
 
 	
     @PersistenceContext
-    EntityManager entityManager;
+    private transient EntityManager entityManager;
 
     public final EntityManager entityManager() {
         return entityManager;
@@ -35,7 +35,9 @@ public class RendezvousADImpl implements RendezvousAD {
 
     @Override
 	public Rendezvous findRendezvous(Integer idRv) {
-        if (idRv == null) return null;
+        if (idRv == null) {
+        	return null;
+        }
         return entityManager().find(Rendezvous.class, idRv);
     }
 
@@ -47,14 +49,18 @@ public class RendezvousADImpl implements RendezvousAD {
     @Override
 	@Transactional
     public void persist(Rendezvous rendezvous) {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         this.entityManager.persist(rendezvous);
     }
 
     @Override
 	@Transactional
     public void remove(Rendezvous rendezvous) {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         if (this.entityManager.contains(rendezvous)) {
             this.entityManager.remove(rendezvous);
         } else {
@@ -66,21 +72,27 @@ public class RendezvousADImpl implements RendezvousAD {
     @Override
 	@Transactional
     public void flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         this.entityManager.flush();
     }
 
     @Override
 	@Transactional
     public void clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         this.entityManager.clear();
     }
 
     @Override
 	@Transactional
     public Rendezvous merge(Rendezvous rendezvous) {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         Rendezvous merged = this.entityManager.merge(rendezvous);
         this.entityManager.flush();
         return merged;

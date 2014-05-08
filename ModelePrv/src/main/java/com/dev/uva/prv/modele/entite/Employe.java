@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 public class Employe {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CODE_UTILISATEUR", length = 50)
     private String codeUtilisateur;
 

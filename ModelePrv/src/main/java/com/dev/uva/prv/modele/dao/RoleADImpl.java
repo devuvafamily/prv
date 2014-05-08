@@ -18,7 +18,7 @@ public class RoleADImpl implements RoleAD {
 	
 
 	@PersistenceContext
-    transient EntityManager entityManager;
+    private transient EntityManager entityManager;
 
 	public final EntityManager entityManager() {
         return entityManager;
@@ -36,7 +36,9 @@ public class RoleADImpl implements RoleAD {
 
 	@Override
 	public Role findRole(String codeRole) {
-        if (codeRole == null || codeRole.length() == 0) return null;
+        if (codeRole == null || codeRole.length() == 0) {
+        	return null;
+        }
         return entityManager().find(Role.class, codeRole);
     }
 
@@ -48,14 +50,18 @@ public class RoleADImpl implements RoleAD {
 	@Override
 	@Transactional
     public void persist(Role role) {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         this.entityManager.persist(role);
     }
 
 	@Override
 	@Transactional
     public void remove(Role role) {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         if (this.entityManager.contains(role)) {
             this.entityManager.remove(role);
         } else {
@@ -67,21 +73,27 @@ public class RoleADImpl implements RoleAD {
 	@Override
 	@Transactional
     public void flush() {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         this.entityManager.flush();
     }
 
 	@Override
 	@Transactional
     public void clear() {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         this.entityManager.clear();
     }
 
 	@Override
 	@Transactional
     public Role merge(Role role) {
-        if (this.entityManager == null) this.entityManager = entityManager();
+        if (this.entityManager == null) {
+        	this.entityManager = entityManager();
+        }
         Role merged = this.entityManager.merge(role);
         this.entityManager.flush();
         return merged;

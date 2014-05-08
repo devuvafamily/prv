@@ -21,6 +21,23 @@
 .divBas {
 	text-align: center;
 }
+
+.formulaire {	/* Mise en forme des cadres */
+	border:1px solid #126EA1;
+	font-weight:normal;
+	padding:5px 10px 10px 10px;
+	margin-top:15px;
+	background-color: #89C6D8;
+}
+
+.formulaire legend{
+
+  font-weight: bold;
+  color:#CE4300;
+  font-size:13px;
+  padding: 0.1em;
+  margin-bottom: 10px;
+}
 </style>
 </head>
 <body>

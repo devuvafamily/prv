@@ -27,14 +27,14 @@ public class PrvDaoTest {
 	@Test
 	public void testAjouterEmploye() {
 		Client client = new Client();
-		client.setNom("Fall");
-		client.setPrenom("Bafal");
+		client.setNom("Muche");
+		client.setPrenom("Truc");
 		client.setCivilite("Mr");
-		client.setAdresse("396 Rue de la Reine");
+		client.setAdresse("ou steak hache");
 		client.setCodeClient("bafal");
-		client.setCodePostal("G1K2R2");
-		client.setCourriel("bafal.fall@uva.sn");
-		client.setTelephone("4182628018");
+		client.setCodePostal("94800");
+		client.setCourriel("truc.muche@uva.sn");
+		client.setTelephone("062828282");
 		client.setVille("Quebec");
 		client.setProvince("QC");
 		

@@ -1,10 +1,7 @@
 package com.dev.uva.prv.rv;
 
-import java.util.Date;
-import java.util.Locale;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.interceptor.validation.SkipValidation;
@@ -13,12 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.dev.uva.prv.commun.PrvBaseAction;
 import com.dev.uva.prv.commun.UtilitaireValidation;
 import com.dev.uva.prv.modele.entite.Rendezvous;
 import com.dev.uva.prv.modele.service.ServiceRv;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 
 /**

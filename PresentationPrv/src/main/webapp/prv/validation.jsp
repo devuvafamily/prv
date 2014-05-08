@@ -4,8 +4,9 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sx" uri="/struts-dojo-tags"%>
 <sx:head parseContent="true" />
+
 <s:form action="rv" namespace="/prv" method="POST">
-	<fieldset>
+	<fieldset class="formulaire">
 		<legend>
 			<s:text name="validation.legend" />
 		</legend>
@@ -14,7 +15,7 @@
 		</s:div>
 		<br />
 		<s:div>
-			<span style="color: red"> <s:text name="validation.important"></s:text></span>
+			<b><span style="color: red"> <u><s:text name="validation.important"></s:text></u></span></b>
 			<br />
 			<p>
 				<s:text name="validation.noteImportante"></s:text>
