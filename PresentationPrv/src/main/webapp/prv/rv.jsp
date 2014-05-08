@@ -15,21 +15,22 @@
 	list-style: none;
 }
 
-.errorsBg{
-	background-color:#fdd;
-	color:red;	
+.errorsBg {
+	background-color: #fdd;
+	color: red;
 	border: 1px solid;
 }
- 
-.errorMessage{
-	padding:0px 8px;
+
+.errorMessage {
+	padding: 0px 8px;
 }
- 
-table{
+
+table {
 	border-spacing: 2px;
 }
-td{
-	padding:2px;
+
+td {
+	padding: 2px;
 }
 </style>
 <script type="text/javascript">
@@ -88,85 +89,52 @@ td{
 		<legend>
 			<s:text name="client.legend" />
 		</legend>
-		<div>
-			<table>
-				<tr>
-					<td>&nbsp;&nbsp;</td>
-				</tr>
-				<tr>
-					<td><s:select key="client.civilite" list="listeSexes" value=""
-							name="rv.codeClient.civilite" /></td>
+           <table>
+			<s:select key="client.civilite" list="listeSexes" value=""
+				name="rv.codeClient.civilite" />
+			<s:textfield size="20" name="rv.codeClient.codeClient"
+				key="client.identifiant" requiredLabel="true" />
 
-				</tr>
-				<tr>
-					<td><s:textfield size="20" name="rv.codeClient.codeClient"
-							key="client.identifiant" requiredLabel="true" /></td>
-
-				</tr>
-				<tr>
-					<td><s:textfield size="50" name="rv.codeClient.nom"
-							key="client.nom" requiredLabel="true" /></td>
-					<td><s:textfield size="50" name="rv.codeClient.prenom"
-							key="client.prenom" requiredLabel="true" /></td>
-				</tr>
-				<tr>
-					<td><sx:datetimepicker name="rv.codeClient.dateNaissance"
-							displayFormat="yyyy-MM-dd" key="client.dateNaissance" /></td>
-				</tr>
-				<tr>
-					<td><s:textarea cols="35" rows="4" key="client.adresse"
-							name="rv.codeClient.adresse" requiredLabel="true" /></td>
-				</tr>
-				<tr>
-					<td><s:textfield size="50" name="rv.codeClient.courriel"
-							key="client.mail" requiredLabel="true" /></td>
-				</tr>
-			</table>
-		</div>
-	</fieldset>
-
-	<fieldset>
+			<s:textfield size="50" name="rv.codeClient.nom" key="client.nom"
+				requiredLabel="true" />
+			<s:textfield size="50" name="rv.codeClient.prenom"
+				key="client.prenom" requiredLabel="true" />
+			<sx:datetimepicker name="rv.codeClient.dateNaissance"
+				displayFormat="yyyy-MM-dd" key="client.dateNaissance" />
+			<s:textarea cols="35" rows="4" key="client.adresse"
+				name="rv.codeClient.adresse" requiredLabel="true" />
+			<s:textfield size="50" name="rv.codeClient.courriel"
+				key="client.mail" requiredLabel="true" />
+        </table>
+     </fieldset>
+     <br/>
+     <fieldset>
 		<legend>
 			<s:text name="client.legend.plage" />
 		</legend>
-		<table>
-			<tr>
-				<td><sx:datetimepicker name="rv.jourRv"
-						displayFormat="yyyy-MM-dd" key="client.dateRv"
-						requiredLabel="true" /></td>
-			</tr>
-			<tr>
-				<td><s:select list="listeNatureDemande" id="natureDemande"
-						name="rv.natureDemande" key="client.natureDemande"
-						onchange="javascript:toggleNatureDemande();" /></td>
-			</tr>
-			<tr>
-				<td><s:textfield size="50" id="natureAutre"
-						name="rv.natureDemandeAutre" disabled="true"
-						key="client.autreDemande" /></td>
-			</tr>
-			<!--  <tr>	
+        <table>
+		<sx:datetimepicker name="rv.jourRv" displayFormat="yyyy-MM-dd"
+			key="client.dateRv" requiredLabel="true" />
+		<s:select list="listeNatureDemande" id="natureDemande"
+			name="rv.natureDemande" key="client.natureDemande"
+			onchange="javascript:toggleNatureDemande();" />
+		<s:textfield size="50" id="natureAutre" name="rv.natureDemandeAutre"
+			disabled="true" key="client.autreDemande" />
+
+		<!--  <tr>	
                 	<td><s:select list="listeHeures" name="rv.idCreneaux.heureDebut" key="rv.heure"/></td>
                 	<td><s:select list="listeMinutes" name="rv.idCreneaux.minuteDebut" key="rv.minute"/></td>
                 </tr> -->
-			<tr>
-				<td><s:textarea cols="35" rows="4" key="rv.notes"
-						name="rv.notesRv" /></td>
-			</tr>
-			<tr>
-				<td>&nbsp;&nbsp;</td>
-			</tr>
-			<tr>
-				<td colspan="2"><s:radio list="listePreferences"
-						name="rv.modeCommunication" key="client.preference" /></td>
-			</tr>
-		</table>
+		<s:textarea cols="35" rows="4" key="rv.notes" name="rv.notesRv" />
 
-	</fieldset>
-	<s:div>
+		<s:radio list="listePreferences" name="rv.modeCommunication"
+			key="client.preference" />
+			</table>
 		<s:submit type="button" key="client.reset" method="clearModel" />
 		<s:submit key="client.soumettre" method="soumettreRv" />
-	</s:div>
+	</fieldset>
+
+
 
 </s:form>
 <script type="text/javascript">

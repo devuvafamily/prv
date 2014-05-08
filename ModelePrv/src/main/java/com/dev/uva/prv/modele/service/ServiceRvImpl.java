@@ -3,9 +3,11 @@ package com.dev.uva.prv.modele.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dev.uva.prv.modele.dao.ClientAD;
 import com.dev.uva.prv.modele.dao.CreneauxAD;
 import com.dev.uva.prv.modele.dao.EmployeAD;
 import com.dev.uva.prv.modele.dao.RendezvousAD;
+import com.dev.uva.prv.modele.entite.Client;
 import com.dev.uva.prv.modele.entite.Rendezvous;
 
 
@@ -18,9 +20,19 @@ public class ServiceRvImpl implements ServiceRv {
 	EmployeAD daoEmploye;
 	@Autowired
 	CreneauxAD daoCreneaux;
+	@Autowired
+	ClientAD daoClient;
 	
 	@Override
 	public void ajouterRendezVous(Rendezvous rendezvous){
+		if(rendezvous.getCodeClient()!= null){
+			Client client = daoClient.findClient(rendezvous.getCodeClient().getCodeClient());
+			if(client instanceof Client){
+				daoClient.merge(rendezvous.getCodeClient());
+			} else {
+				daoClient.persist(rendezvous.getCodeClient());
+			}
+		}
 		daoRv.persist(rendezvous);
 	}
 	

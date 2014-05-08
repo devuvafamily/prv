@@ -42,7 +42,7 @@ public class Rendezvous {
     @JoinColumn(name = "ID_CRENEAUX", referencedColumnName = "ID_CRENEAUX")
     private Creneaux idCreneaux;
 
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToOne /*(cascade = { CascadeType.PERSIST, CascadeType.MERGE })*/
     @JoinColumn(name = "CODE_CLIENT", referencedColumnName = "CODE_CLIENT", nullable = false)
     private Client codeClient;
 

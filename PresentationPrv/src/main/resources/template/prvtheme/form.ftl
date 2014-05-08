@@ -30,4 +30,4 @@
   </#if>
 </#if>
 >
-<#include "/${parameters.templateDir}/xhtml/control.ftl" />
+<#--  <#include "/${parameters.templateDir}/xhtml/control.ftl" /> -->
