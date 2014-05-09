@@ -24,4 +24,8 @@
         <put-attribute name="title" value="Prv ::. Validation" />
         <put-attribute name="body" value="/prv/validation.jsp" />
     </definition>
+    <definition name="/listerv.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Prv ::. Liste des rendez-vous" />
+        <put-attribute name="body" value="/pilotage/listeRv.jsp" />
+    </definition>
 </tiles-definitions>

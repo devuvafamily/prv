@@ -57,8 +57,18 @@ public class RvAction extends PrvBaseAction implements ModelDriven<Rendezvous>,
 	private HttpServletRequest request;
 
 	private Rendezvous rv = new Rendezvous();
+	
+	private String idCourant;
 
 	// Liste des domaines de valeur -- Juste à titre d'exemple
+
+	public String getIdCourant() {
+		return idCourant;
+	}
+
+	public void setIdCourant(String idCourant) {
+		this.idCourant = idCourant;
+	}
 
 	private String[] listeSexes = new String[] { "Mr", "Mme", "Autre" };
 
@@ -211,6 +221,16 @@ public class RvAction extends PrvBaseAction implements ModelDriven<Rendezvous>,
 			return AFFICHER;
 		}
 		return VALIDATION;
+	}
+	
+	
+	public String modifierRv(){
+		String idCourant = this.getIdCourant();
+		if(!estVide(idCourant)){
+			Integer idNumber = new Integer(idCourant);
+			this.setRv(serviceRv.obtenirRendezVous(idNumber));
+		}
+		return AFFICHER;
 	}
 
 	/**

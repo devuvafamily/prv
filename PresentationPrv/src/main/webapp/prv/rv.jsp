@@ -95,7 +95,7 @@ td {
 			</s:a>
 		</s:if>
 		<s:if test="langue=='en'">
-			<s:a href="%{localeFR}">
+			<s:a href="%{localeFR}" >
 				<s:text name="prv.langue"></s:text>
 			</s:a>
 		</s:if>
@@ -106,7 +106,7 @@ td {
 			<s:text name="client.legend" />
 		</legend>
            <table>
-			<s:select key="client.civilite" list="listeSexes" value=""
+			<s:select key="client.civilite" list="listeSexes" value="" 
 				name="rv.codeClient.civilite" />
 			<s:textfield size="20" name="rv.codeClient.codeClient"
 				key="client.identifiant" requiredLabel="true" />

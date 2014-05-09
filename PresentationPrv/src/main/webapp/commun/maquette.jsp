@@ -38,6 +38,25 @@
   padding: 0.1em;
   margin-bottom: 10px;
 }
+
+.tableresultat {
+	font-size: 100%;
+	margin: 0.5em 0 0.5em 0;
+	width: 98%;
+}
+
+.tableresultat th {
+	text-align:left;
+  color:#000;
+  background-color: #E2EBF2;
+  border: 1px solid #FFF;
+  padding: 3px 0 3px 6px;
+}
+
+.tableresultat td {
+  border: 1px solid #FFF;
+  padding: 3px 0 3px 6px;	
+}	
 </style>
 </head>
 <body>

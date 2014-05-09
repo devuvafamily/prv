@@ -17,16 +17,25 @@
             <result name="validation" type="tiles">/validation.tiles</result>
         </action>
 
-        <action name="connexion_*" method="{1}" class="com.dev.uva.prv.accueil.Connexion">
+        <action name="connexion" class="com.dev.uva.prv.accueil.Connexion">
             <result name="input" type="tiles">/connexion.tiles</result>
-            <result type="redirectAction">rv</result>
+            <result type="redirectAction">
+            	<param name="actionName">listerv</param>
+            	<param name="namespace">/pilotage</param>
+        </result>
+           <!--   <result type="redirectAction">pilotage/listerv</result> -->
         </action>
-
-        <action name="*" class="com.dev.uva.prv.commun.PrvBaseAction">
-            <result>/prv/{1}.jsp</result>
-        </action>
-
-		<!-- définir ici les actions ... -->
-
     </package>
+     <package name="pilotage" namespace="/pilotage" extends="struts-default">
+        <result-types>
+            <result-type name="tiles"
+                class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+
+        <default-action-ref name="listerv" />
+
+        <action name="listerv" class="com.dev.uva.prv.pilotage.PilotageAction" method="afficherListe" >
+            <result name="afficher" type="tiles">/listerv.tiles</result>
+        </action>
+    </package>   
 </struts>

@@ -76,4 +76,5 @@
     <bean id="roleADImpl"  class="com.dev.uva.prv.modele.dao.RoleADImpl"/>
     
     <bean id="serviceRv" class="com.dev.uva.prv.modele.service.ServiceRvImpl" />
+    <bean id="servicePilotage" class="com.dev.uva.prv.modele.service.ServicePilotageImpl"></bean>
 </beans>
